@@ -1,0 +1,75 @@
+.vr {
+    border-left:1px solid #000;height:520px;
+}
+
+body {
+    background:  linear-gradient(to right, #02111d, #037bb5, #02111d)
+}
+
+.chat-window{
+    height:380px;
+    background-color: white;
+    overflow-y: auto;
+
+}
+
+.speech-bubble {
+	position: relative;
+    border-radius: .4em;
+    margin-top: 4px;
+    padding: 0px 10px;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 5px solid transparent;
+    margin-top: -5px;
+}
+
+.speech-bubble-him {
+    background: #00aabb;
+    text-align: left;
+    float: left;
+    clear: both;
+}
+
+.speech-bubble-him:after {
+    left: 0;
+    border-right-color: #00aabb;
+    border-left: 0;
+	margin-left: -5px;
+}
+
+.speech-bubble-you {
+    background: #91d94f;
+    text-align: right;
+    float: right;
+    clear: both;
+}
+
+.speech-bubble-you:after {
+    right: 0;
+    border-left-color: #91d94f;
+    border-right: 0;
+	margin-right: -5px;
+}
+
+.speech-bubble-error{
+    background: red;
+}
+
+.speech-bubble-error:after {
+    border-left-color: red;
+    border-right-color: red;
+}
+
+.btn-intraction{
+    float: right;
+    margin-right: 16px;
+    margin-top: -10px;
+}
+

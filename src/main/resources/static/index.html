@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="p1.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <title>Gator Translator</title>
+</head>
+
+<body ng-controller="MainCtrl">
+<div class="container">
+    <div class="text-center">
+        <h1 style="color:white">HCI Project 1: Gator Translator</h1>
+    </div>
+    <div class="row">
+        <div class="col m-3">
+            <form>
+                <div class="form-group">
+                        <span style="    position: fixed;
+                        float: right;
+                        margin-left: -100px;
+                        color: white;">Error count:{{(yourChatWindow|filter:{error:true}).length}}</span>
+                    <div class="form-control chat-window" id="chatWindow1">
+                            <span ng-repeat="chat in yourChatWindow" class="speech-bubble" ng-class="{'speech-bubble-you' : chat.owner == 'you' ,
+                                        'speech-bubble-him' : chat.owner == 'him',
+                                        'speech-bubble-error' : chat.error}">{{chat.content}}
+                                <br>
+                                <div title="Error" class="fas fa-exclamation-triangle" ng-show="chat.owner=='him'" ng-click="markError(chat.id)"></div>
+                            </span>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelectPref" ng-model="fromLang">
+                            <option selected disabled value=''>Choose language</option>
+                            <option ng-repeat="language in languages" value="{{language.code}}">{{language.lang}}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <form ng-submit="!anyFieldMissingForYou() && enterYourChat()">
+                <div class="input-group mb-3 my-3">
+                    <input type="text" class="form-control" placeholder="Write here..." ng-model="you.chat">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="button" ng-click="enterYourChat()" ng-disabled="anyFieldMissingForYou()">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="vr"></div>
+        <div class="col m-3">
+            <form>
+                <div class="form-group">
+                    <div class="form-control chat-window" id="chatWindow2">
+                            <span ng-repeat="chat in hisChatWindow" class="speech-bubble" ng-class="{'speech-bubble-you' : chat.owner == 'him' ,
+                                        'speech-bubble-him' : chat.owner == 'you',
+                                    'speech-bubble-error' : chat.error }">{{chat.content}}
+                                <br>
+                                <div title="Error" class="fas fa-exclamation-triangle" ng-show="chat.owner=='you'" ng-click="markError(chat.id)"></div>
+                            </span>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelectPref" ng-model="toLang">
+                            <option selected disabled value=''>Choose language</option>
+                            <option ng-repeat="language in languages" value="{{language.code}}">{{language.lang}}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <form ng-submit="!anyFieldMissingForHim() && enterHisChat()" ng-sub>
+                <div class="input-group mb-3 my-3">
+                    <input type="text" class="form-control" placeholder="Write here..." ng-model="his.chat">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="button" ng-click="enterHisChat()" ng-disabled="anyFieldMissingForHim()">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="btn-intraction">
+        <a type="button" class="btn btn-warning" href="https://ufl.qualtrics.com/jfe/form/SV_d6Zun7WYUfjcYfz">Complete Interaction</a>
+    </div>
+</div>
+<script src="https://code.angularjs.org/1.6.2/angular.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="p1.js"></script>
+</body>
+
+</html>
